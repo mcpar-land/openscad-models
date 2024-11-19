@@ -1,3 +1,7 @@
+// This is a bracket that goes against the top of an Ikea KALLAX shelf.
+// By using two of them, you can support a large picture or poster board in a frame
+// by leaning it against the wall.
+
 in_to_mm = 2.54 * 10;
 
 $fa = 1;
