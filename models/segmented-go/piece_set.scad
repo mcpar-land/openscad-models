@@ -25,8 +25,8 @@ module piece() {
 
 sep = 22;
 
-for (i = [1:13]) {
-	for (j = [1:14]) {
+for (i = [1:1]) {
+	for (j = [1:1]) {
 		translate([sep*i, sep * j])
 			piece();
 	}
