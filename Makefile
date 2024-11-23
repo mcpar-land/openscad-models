@@ -7,4 +7,4 @@ all: $(OUT)
 	openscad -o $@ $<
 
 clear:
-	rm $(OUT)
+	find . -name "*.stl" | xargs rm
