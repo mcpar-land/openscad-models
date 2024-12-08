@@ -4,7 +4,7 @@ $fs = 1;
 in_to_mm = 2.54 * 10;
 
 height = 100;
-diameter = 250; // max print bed size is 256
+diameter = 230; // max print bed size is 256
 thickness = 3;
 spool_diameter = 30;
 slot_width = 15;
