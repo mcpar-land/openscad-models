@@ -1,4 +1,4 @@
-{pkgs ? import <nixpkgs> {}}: let
+{pkgs, ...}: let
   bosl = pkgs.fetchFromGitHub {
     repo = "BOSL";
     owner = "revarbat";
@@ -10,14 +10,13 @@
     mkdir $out/bosl
     cp ${bosl}/*.scad $out/bosl
   '';
-in
-  pkgs.mkShell {
-    packages = with pkgs; [
-      openscad-unstable
-      openscad-lsp
-    ];
+in {
+  packages = with pkgs; [
+    openscad-unstable
+    openscad-lsp
+  ];
 
-    shellHook = ''
-      export OPENSCADPATH="${libraries}"
-    '';
-  }
+  enterShell = ''
+    export OPENSCADPATH="${libraries}"
+  '';
+}
