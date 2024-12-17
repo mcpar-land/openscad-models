@@ -27,10 +27,13 @@ linear_extrude(thickness)
 	shell2d(-lip_thickness) polygon(poly);
 }
 
-hex_filled_surface(250/2, 256, 4, lip_thickness=4, hex_size=20);
-translate([0,0,4])
+thickness = 6;
+hex_size = 10;
+
+hex_filled_surface(250/2, 256, thickness, lip_thickness=thickness, hex_size=hex_size);
+translate([0,0,thickness])
 rotate([-90,0,0])
-	hex_filled_surface(250/2, 50, 4, lip_thickness=4, hex_size=20);
-translate([0,256-4,4])
+	hex_filled_surface(250/2, 50, thickness, lip_thickness=thickness, hex_size=hex_size);
+translate([0,256-thickness,thickness])
 rotate([-90,0,0])
-	hex_filled_surface(250/2, 50, 4, lip_thickness=4, hex_size=20);
+	hex_filled_surface(250/2, 50, thickness, lip_thickness=thickness, hex_size=hex_size);
