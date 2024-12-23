@@ -25,6 +25,6 @@ in {
   ];
 
   enterShell = ''
-    export OPENSCADPATH="${libraries}"
+    export OPENSCADPATH="${libraries}:./models"
   '';
 }
