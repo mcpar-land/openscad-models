@@ -8,17 +8,20 @@ height = 22;
 length = 100;
 width = 120;
 bezel = 2.5;
+rounding = 1;
 
 end_height = 16;
 
 top_bez = [
 	[0, height],
-	[35, 12],
+	[40, end_height],
+	[50, end_height],
+	[80, end_height],
 	[length, end_height]
 ];
 
 linear_extrude(width)
-shell2d(-bezel, or=bezel*2, ir=bezel, round=bezel*2, fill=bezel) {
+shell2d(-bezel, or=rounding, ir=rounding, round=rounding, fill=rounding) {
 	polygon([
 		[0, 0],
 		[0, height],
@@ -34,14 +37,3 @@ shell2d(-bezel, or=bezel*2, ir=bezel, round=bezel*2, fill=bezel) {
 	]);
 }
 
-b2 = bezel * 2;
-
-translate([0, (bezel+0.1), 0])
-rotate([90, 0, 0])
-grid2d(spacing=6, stagger=true, in_poly=[
-	[bezel * 2 + 2, bezel],
-	[bezel * 2 + 2, width - bezel],
-	[length - (bezel * 2), width - bezel],
-	[length - (bezel * 2), bezel]
-])
-	zrot(180/6) cylinder(d=5, h=bezel+0.2, $fn=6);
