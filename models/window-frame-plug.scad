@@ -34,7 +34,8 @@ xdistribute(spacing=10, sizes=[s,s,s,s,s,s,s]) {
 	}
 
 	union() {
-		tetris_l(latch_width/2, has_grip=false);
+		// -3 is because i mismeasured i think
+		tetris_l(latch_width/2-3, has_grip=false);
 		back(latch_width/2)
 			tetris_l(gap_m/2-latch_width/4);
 	}
@@ -44,7 +45,8 @@ xdistribute(spacing=10, sizes=[s,s,s,s,s,s,s]) {
 	union() {
 		tetris_l(gap_m/2-latch_width/4);
 		back(gap_m/2-latch_width/4)
-			tetris_l(latch_width/2, has_grip=false);
+			// -3 is because i mismeasured i think
+			tetris_l(latch_width/2-3, has_grip=false);
 	}
 
 	union() {
