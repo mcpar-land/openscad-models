@@ -36,7 +36,7 @@ xdistribute(spacing=10, sizes=[s,s,s,s,s,s,s]) {
 	union() {
 		// -3 is because i mismeasured i think
 		tetris_l(latch_width/2-3, has_grip=false);
-		back(latch_width/2)
+		back(latch_width/2-3)
 			tetris_l(gap_m/2-latch_width/4);
 	}
 
