@@ -1,10 +1,14 @@
+include <bosl2/std.scad>
+include <bosl2/shapes3d.scad>
+
 monitor_width = 147.2; // actually 146.7 but needs give
 monitor_height = 79; // actually 78.5 but needs give
 monitor_thickness = 16.5; // actually 16 but needs give
 
 keyboard_width = 152;
-keyboard_height = 59;
+keyboard_height = 60;
 keyboard_thickness = 12;
+keyboard_chamfer = 2.25;
 
 thickness = 2.5;
 lip = 5;
@@ -16,10 +20,16 @@ module monitor() {
 }
 
 module keyboard() {
-	cube([keyboard_width, keyboard_height, keyboard_thickness]);
+	translate([0, -keyboard_height, thickness])
+		cuboid(
+			[keyboard_width, keyboard_height, keyboard_thickness],
+			anchor=FRONT+LEFT+BOT,
+			chamfer=keyboard_chamfer
+		);
 }
 
 %monitor();
+%keyboard();
 
 difference() {
 	union() {
@@ -82,4 +92,51 @@ handle();
 translate([monitor_width +thickness -  lip, 0, 0])
 	handle();
 
-// keyboard();
+keyboard_clip_width = 40;
+keyboard_clip_gap = 1;
+
+_full_width = monitor_width+thickness*2;
+_half_width = _full_width/2;
+
+difference() {
+	union() {
+		translate([_half_width, 0, 0]) {
+			cuboid([
+				keyboard_clip_width,
+				keyboard_height+thickness,
+				keyboard_thickness+thickness-0.01
+			], anchor=BACK+BOT);
+			cuboid(
+				[keyboard_clip_width, keyboard_chamfer, monitor_thickness+thickness*2],
+				anchor=BACK+BOT,
+				chamfer=keyboard_chamfer,
+				edges=[FRONT+TOP]
+			);
+		}
+	}
+	keyboard();
+}
+
+translate([-lip, lip, 0])
+cuboid(
+	[
+		_half_width + lip - keyboard_clip_width/2 - keyboard_clip_gap,
+		keyboard_height + lip,
+		thickness,
+	],
+	anchor=BACK+BOT+LEFT,
+	edges=[FWD+LEFT],
+	chamfer=10
+);
+
+translate([_full_width+lip, lip, 0])
+cuboid(
+	[
+		_half_width + lip - keyboard_clip_width/2 - keyboard_clip_gap,
+		keyboard_height + lip,
+		thickness,
+	],
+	anchor=BACK+BOT+RIGHT,
+	edges=[FWD+RIGHT],
+	chamfer=10
+);
