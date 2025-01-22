@@ -117,11 +117,11 @@ difference() {
 	keyboard();
 }
 
-translate([-lip, lip, 0])
+translate([-lip, 0, 0])
 cuboid(
 	[
 		_half_width + lip - keyboard_clip_width/2 - keyboard_clip_gap,
-		keyboard_height + lip,
+		keyboard_height,
 		thickness,
 	],
 	anchor=BACK+BOT+LEFT,
@@ -129,14 +129,33 @@ cuboid(
 	chamfer=10
 );
 
-translate([_full_width+lip, lip, 0])
+translate([_full_width+lip, 0, 0])
 cuboid(
 	[
 		_half_width + lip - keyboard_clip_width/2 - keyboard_clip_gap,
-		keyboard_height + lip,
+		keyboard_height,
 		thickness,
 	],
 	anchor=BACK+BOT+RIGHT,
 	edges=[FWD+RIGHT],
 	chamfer=10
 );
+
+module side_wedge() {
+	scale([1, -1, 1])
+	translate([0,0,thickness])
+	wedge([lip, 50, monitor_thickness+thickness]);
+	cuboid(
+		[lip, lip, monitor_thickness+thickness*2],
+		anchor=FRONT+BOT+LEFT,		
+		chamfer=keyboard_chamfer,
+		edges=[BACK+LEFT]
+	);
+}
+
+translate([-lip, 0, 0])
+	side_wedge();
+
+translate([_full_width+lip, 0, 0])
+	scale([-1, 1, 1])
+	side_wedge();
