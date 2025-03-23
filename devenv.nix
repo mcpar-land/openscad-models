@@ -22,6 +22,7 @@ in {
   packages = with pkgs; [
     openscad-unstable
     openscad-lsp
+    freecad
   ];
 
   enterShell = ''
