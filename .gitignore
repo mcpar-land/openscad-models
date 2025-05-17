@@ -1,4 +1,5 @@
 *.stl
+*.3mf
 # Devenv
 .devenv*
 devenv.local.nix

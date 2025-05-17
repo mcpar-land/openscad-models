@@ -3,8 +3,8 @@ OUT := $(subst .scad,.stl,$(SRCS))
 
 all: $(OUT)
 
-%.stl: %.scad
-	openscad -o $@ $<
+models/%.stl: models/%.scad
+	openscad --debug=all --enable=all -o $@ $<
 
 clear:
 	find . -name "*.stl" | xargs rm
